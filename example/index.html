@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Angular Color Picker Directive</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">               
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <style>
+            input[color-picker]{
+                margin-bottom: 10px;
+                width: 182px;
+            }
+        </style>
+    </head>
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.5/angular.min.js"></script>
+	<script src="angularjs-dropdown-multiselect.min.beta.js"></script>
+	<div class="container" ng-app="demo" ng-controller="myCtrl" id="demo">
+		<div ng-dropdown-multiselect="" options="selectByGroupData" selected-model="selectByGroupModel" extra-settings="selectByGroupSettings"></div>
+		<pre>Selected Model: {{selectByGroupModel}} | json</pre>
+	</div>
+	<script>
+		var app = angular.module("demo", ["angularjs-dropdown-multiselect"]); //定义一个模块
+    angular.module("demo").controller("myCtrl", function($scope) {
+      $scope.selectByGroupModel = [];
+      $scope.selectByGroupData = [
+        { id: 1, label: "<100", rule: "czl_ocean_slow_log_test_simulated_copy" },
+        { id: 2, label: "100~200", rule: "czl_ocean_slow_log_test_simulated_copy" },
+        { id: 3, label: "200~300", rule: "czl_ocean_slow_log_test_simulated_copy" },
+        { id: 4, label: ">300", rule: "czl_ocean_slow_log_test_simulated_copy" },
+        { id: 5, label: "默认分类", rule: "czl_ocean_slow_log_test_simulated_copy" },
+        { id: 6, label: "PERFORMANCE_INDEX", rule: "自建CDN数据-频道统计" },
+        { id: 7, label: "默认分类", rule: "自建CDN数据-频道统计" },
+        { id: 8, label: "默认分类", rule: "czl_test_logtailes" },
+      ];
+      $scope.selectByGroupSettings = {
+        selectByGroups: ["czl_ocean_slow_log_test_simulated_copy", "自建CDN数据-频道统计"],
+        groupByTextProvider: function(groupValue) {
+          return groupValue;
+        },
+        groupBy: "rule"
+      };
+    });
+	</script>
+    </body>
+</html>
